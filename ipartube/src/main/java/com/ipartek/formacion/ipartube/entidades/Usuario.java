@@ -1,14 +1,13 @@
 package com.ipartek.formacion.ipartube.entidades;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,25 +20,24 @@ import lombok.NoArgsConstructor;
 @Builder
 
 @Entity
-@Table(name = "videos")
-public class Video {
+@Table(name = "usuarios")
+public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
-	@Size(max = 100)
-	private String titulo;
+	@Size(max = 20)
+	private String nombre;
 	
 	@NotBlank
 	@Size(max = 255)
-	private String url;
+	@Column(unique = true)
+	@Email
+	private String email;
 	
-	@Lob
-	@Size(max = 2000)
-	private String descripcion;
-	
-	@NotNull
-	@ManyToOne
-	private Usuario usuario;
+	@NotBlank
+	@Size(max = 60)
+	private String password;
+
 }
