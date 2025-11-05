@@ -45,4 +45,10 @@ public class IndexController {
 		 
 		 return "redirect:/";
 	}
+	
+	@GetMapping("login")
+	public String login() {
+		return "login";
+	}
+	
 }
