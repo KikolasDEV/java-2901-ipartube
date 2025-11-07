@@ -6,4 +6,6 @@ import jakarta.validation.Valid;
 
 public interface AutenticadoService {
 	Video altaVideo(@Valid Video video);
+	
+	void bajaVideo(Long idVideo, Long idUsuario);
 }
