@@ -4,13 +4,19 @@
 <title>IparTube: listado de videos</title>
 
 <main>
-	<form action="../listado.html" th:action="@{/usuario/nuevo-video}" method="post" th:object="${video}">
-		<div th:replace="~{_fragmentos :: labelInput('Título', 'titulo', true, 'text')}"></div>
-		<div th:replace="~{_fragmentos :: labelInput('URL', 'url', true, 'url')}"></div>
-		<div th:replace="~{_fragmentos :: labelInput('Descripción', 'descripcion', true, 'text')}"></div>
-		
+	<form action="../listado.html" th:action="@{/usuario/nuevo-video}"
+		method="post" th:object="${video}">
+		<input type="hidden" th:field="*{id}">
+
+		<div
+			th:replace="~{_fragmentos :: labelInput('Título', 'titulo', true, 'text')}"></div>
+		<div
+			th:replace="~{_fragmentos :: labelInput('URL', 'url', true, 'url')}"></div>
+		<div
+			th:replace="~{_fragmentos :: labelInput('Descripción', 'descripcion', true, 'text')}"></div>
+
 		<input type="hidden" name="usuario.id" value="0">
-		
+
 		<button class="btn btn-primary">Guardar</button>
 	</form>
 </main>
