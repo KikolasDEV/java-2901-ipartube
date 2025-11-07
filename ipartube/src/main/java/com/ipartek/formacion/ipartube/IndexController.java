@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ipartek.formacion.ipartube.entidades.Usuario;
 import com.ipartek.formacion.ipartube.servicios.AnonimoService;
@@ -20,7 +21,16 @@ public class IndexController {
 	@GetMapping
 	public String index(Model modelo) {
 		modelo.addAttribute("videos", anonimoService.listadoVideos());
+		
 		return "listado";
+	}
+
+	@GetMapping("canal")
+	public String canal(@RequestParam("id") Long idUsuario, Model modelo) {
+		modelo.addAttribute("videos", anonimoService.listadoVideos(idUsuario));
+		modelo.addAttribute("usuario", anonimoService.usuarioPorId(idUsuario));
+		
+		return "canal";
 	}
 	
 	@GetMapping("video")
@@ -39,16 +49,15 @@ public class IndexController {
 	public String registroPost(@Valid Usuario usuario, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "registro";
-		} 
+		}
 		
-		 anonimoService.registro(usuario);
-		 
-		 return "redirect:/";
+		anonimoService.registro(usuario);
+		
+		return "redirect:/";
 	}
 	
 	@GetMapping("login")
 	public String login() {
 		return "login";
 	}
-	
 }
