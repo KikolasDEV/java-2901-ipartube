@@ -1,5 +1,6 @@
 package com.ipartek.formacion.ipartube.servicios;
 
+import com.ipartek.formacion.ipartube.entidades.Comentario;
 import com.ipartek.formacion.ipartube.entidades.Video;
 
 import jakarta.validation.Valid;
@@ -10,4 +11,6 @@ public interface AutenticadoService {
 	Video modificarVideo(@Valid Video video);
 	
 	void bajaVideo(Long idVideo, Long idUsuario);
+	
+	Comentario hacerComentario(Comentario comentario);
 }
